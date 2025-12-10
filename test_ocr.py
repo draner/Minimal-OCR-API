@@ -1,5 +1,6 @@
 import base64
 import json
+import time
 
 import requests
 
@@ -16,11 +17,14 @@ payload = {"image_data": image_base64}
 
 # Send request
 try:
+    start_time = time.time()
     response = requests.post(url, json=payload)
     response.raise_for_status()
 
     # Display results
     result = response.json()
+    end_time = time.time()
+    print(f"✅ OCR completed in {end_time - start_time:.2f} seconds")
     print(json.dumps(result, indent=2, ensure_ascii=False))
 
 except requests.exceptions.ConnectionError:
