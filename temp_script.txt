@@ -1,0 +1,22 @@
+import torch
+from doctr.io import DocumentFile
+from doctr.models import ocr_predictor
+
+device = "cuda" if torch.cuda.is_available() else "cpu"
+doctr_model = ocr_predictor(pretrained=True, detect_language=True)
+doctr_model = doctr_model.to(device)
+
+image_path = "0118101435.png"
+
+doc = DocumentFile.from_images([image_path])
+result = doctr_model(doc)
+
+lines: list[str] = []
+for page in result.pages:
+    for block in page.blocks:
+        for line in block.lines:
+            text = " ".join([word.value for word in line.words])
+            lines.append(text)
+
+extract_text = "\n".join(lines)
+print("Extracted Text:\n", extract_text)

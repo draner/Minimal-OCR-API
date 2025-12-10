@@ -1,0 +1,12 @@
+__pycache__
+.mypy_cache
+.venv
+.git
+.gitignore
+*.pyc
+*.pyo
+*.egg-info
+.env
+.pytest_cache
+test_ocr.py
+temp_script.txt
