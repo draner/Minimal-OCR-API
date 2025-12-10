@@ -1,0 +1,2 @@
+- Si execution CPU only, voir pour alléger la taille de l'image docker
+- Faire en sorte que le modèle soit téléchargé au démarrage de l'API
